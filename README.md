@@ -1,4 +1,4 @@
-# it-sec-helpers
+# it-security-chiffres
 implementation for classic and modern chiffre, used for following along with the IT-Security module in the 04 semester.
 
 ## classic chiffre
