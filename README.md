@@ -1,7 +1,7 @@
 # it-sec-helpers
-project containing small scripts / a lib to use diverse chiffres
+implementation for classic and modern chiffre, used for following along with the IT-Security module in the 04 semester.
 
-## classic chiffres
+## classic chiffre
 - [x] caesar
 - [ ] multiplicative 
 - [x] affine
