@@ -3,7 +3,7 @@ implementation for classic and modern chiffre, used for following along with the
 
 ## classic chiffre
 - [x] caesar
-- [ ] multiplicative 
+- [x] multiplicative 
 - [x] affine
 - [ ] playfair chiffre
 - [ ] polybios
