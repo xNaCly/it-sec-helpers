@@ -106,6 +106,7 @@ def decrypt_affine_chiffre(cipher_text: str, t: int, k: int) -> Tuple[str, list[
     return ("".join([ALPHABET[i] for i in ints]), ints)
 
 
+# TODO: implement playfair chiffre
 def encrypt_playfair_chiffre(plain_text: str, k: str) -> Tuple[str, list[int]]:
     """Encrypt a plain text with the playfair chiffre.
 
@@ -165,3 +166,72 @@ def encrypt_playfair_chiffre(plain_text: str, k: str) -> Tuple[str, list[int]]:
             print("gotta make a cube")
 
     return ("", [])
+
+
+def encrypt_polybios_chiffre(plain_text: str, k: str) -> Tuple[str, list[int]]:
+    """Encrypt a plain text with the polybios chiffre.
+
+    ! fails if plain_text contains characters not in ALPHABET
+
+    Args:
+        plain_text (str): The plain text to encrypt.
+        k (str): The key
+    """
+    plain_text = plain_text.lower().replace(" ", "")
+    key = ""
+    for c in k:
+        if c not in key:
+            key += c
+
+    matrix = []
+    alphabet = key + \
+        "".join(sorted(list(set(ALPHABET.replace("j", "")) - set(k))))
+
+    pos_map = {}
+
+    for x in range(5):
+        col = []
+        for y in range(5):
+            pos = y * 5 + x
+            char = alphabet[pos]
+            pos_map[char] = (x+1, y+1)
+            col.append(char)
+        matrix.append(col)
+
+    ints = [pos_map[c] for c in plain_text]
+    return ("".join([str(i[1]) + str(i[0]) for i in ints]), ints)
+
+
+def decrypt_polybios_chiffre(chiffre_text: str, k: str) -> Tuple[str, list[int]]:
+    """Decrpyt a chiffre text with the polybios chiffre.
+
+    ! fails if chiffre isnt made up of integers
+
+    Args:
+        chiffre_text (str): The plain text to encrypt.
+        k (str): The key
+    """
+    key = ""
+    for c in k:
+        if c not in key:
+            key += c
+
+    matrix = []
+    alphabet = key + \
+        "".join(sorted(list(set(ALPHABET.replace("j", "")) - set(k))))
+
+    for x in range(5):
+        col = []
+        for y in range(5):
+            col.append(alphabet[y * 5 + x])
+        matrix.append(col)
+
+    pairs = [chiffre_text[i: i + 2] for i in range(0, len(chiffre_text), 2)]
+    ints = []
+
+    for i in pairs:
+        ints.append((int(i[0]), int(i[1])))
+
+    chars = [matrix[i[1]-1][i[0]-1] for i in ints]
+
+    return ("".join(chars), ints)

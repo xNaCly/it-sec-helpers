@@ -8,7 +8,7 @@ implementation for classic and modern chiffre, used for following along with the
 - [x] multiplicative
 - [x] affine
 - [ ] playfair chiffre
-- [ ] polybios
+- [x] polybios
 - [ ] twosquare
 - [ ] vigenere
 - [ ] rotation
