@@ -173,6 +173,8 @@ def encrypt_polybios_chiffre(plain_text: str, k: str) -> Tuple[str, list[int]]:
 
     ! fails if plain_text contains characters not in ALPHABET
 
+    ! i and j are replacable, i choose to use i everywhere, if your encrypted text includes j it will be replaced to i
+
     Args:
         plain_text (str): The plain text to encrypt.
         k (str): The key
@@ -192,11 +194,15 @@ def encrypt_polybios_chiffre(plain_text: str, k: str) -> Tuple[str, list[int]]:
     for x in range(5):
         col = []
         for y in range(5):
-            pos = y * 5 + x
+            pos = x * 5 + y
             char = alphabet[pos]
+            if char == 'i':
+                pos_map['j'] = (x+1, y+1)
             pos_map[char] = (x+1, y+1)
             col.append(char)
         matrix.append(col)
+
+    print_matrix(matrix)
 
     ints = [pos_map[c] for c in plain_text]
     return ("".join([str(i[1]) + str(i[0]) for i in ints]), ints)
@@ -206,6 +212,8 @@ def decrypt_polybios_chiffre(chiffre_text: str, k: str) -> Tuple[str, list[int]]
     """Decrpyt a chiffre text with the polybios chiffre.
 
     ! fails if chiffre isnt made up of integers
+
+    ! i and j are replacable, i choose to use i everywhere, if your encrypted text includes j it will be replaced to i
 
     Args:
         chiffre_text (str): The plain text to encrypt.
@@ -223,7 +231,7 @@ def decrypt_polybios_chiffre(chiffre_text: str, k: str) -> Tuple[str, list[int]]
     for x in range(5):
         col = []
         for y in range(5):
-            col.append(alphabet[y * 5 + x])
+            col.append(alphabet[x * 5 + y])
         matrix.append(col)
 
     pairs = [chiffre_text[i: i + 2] for i in range(0, len(chiffre_text), 2)]
