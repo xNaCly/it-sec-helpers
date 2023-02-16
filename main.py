@@ -1,4 +1,5 @@
 from itsec.classic_chiffre import *
+from itsec.modern_chiffre import *
 
 key = 7
 t = 5
@@ -34,3 +35,10 @@ affine_decrypted = decrypt_affine_chiffre(affine_encrypted[0], t, key)
 
 print("encrypted: ", affine_encrypted)
 print("decrypted: ", affine_decrypted)
+
+print("\nOne time pad Chiffre")
+one_time_pad_encrypted = encrypt_one_time_pad_chiffre("kryptographie", "dhbwmosbachxx")
+one_time_pad_decrypted = decrypt_one_time_pad_chiffre(one_time_pad_encrypted, "dhbwmosbachxx")
+
+print("encrypted: ", one_time_pad_encrypted)
+print("decrypted: ", one_time_pad_decrypted)
