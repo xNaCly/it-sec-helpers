@@ -16,7 +16,7 @@ implementation for classic and modern chiffre, used for following along with the
 
 ## modern chiffre
 
-- [ ] one time pad
+- [x] one time pad
 - [ ] s-des
 - [ ] rsa
 - [ ] hill chiffre
