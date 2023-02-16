@@ -42,3 +42,8 @@ one_time_pad_decrypted = decrypt_one_time_pad_chiffre(one_time_pad_encrypted, "d
 
 print("encrypted: ", one_time_pad_encrypted)
 print("decrypted: ", one_time_pad_decrypted)
+
+print("\nSimplified DES")
+simplified_des_encrypted = encrypt_simplified_des("11110011", "1010000010")
+
+print("encrypted: ", simplified_des_encrypted)
