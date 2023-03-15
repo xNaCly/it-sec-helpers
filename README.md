@@ -17,6 +17,13 @@ implementation for classic and modern chiffre, used for following along with the
 ## modern chiffre
 
 - [x] one time pad
-- [ ] s-des
-- [ ] rsa
+- [x] s-des
+- [x] rsa
 - [ ] hill chiffre
+
+## Setup
+
+```console
+$ git clone https://github.com/xnacly/it-security-chiffres
+$ python main.py
+```
