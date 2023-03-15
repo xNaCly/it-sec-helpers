@@ -52,9 +52,8 @@ print("encrypted: ", simplified_des_encrypted)
 
 print("\nRSA")
 
-keys = rsa_generate_keys(61, 97)
+keys = rsa_generate_keys(101, 103)
 encrypted_rsa = encrypt_rsa(keys[0], "Hello world :)")
 
 print("encrypted: ", encrypted_rsa)
 print("decrypted: ", decrypt_rsa(keys[1], encrypted_rsa))
-

@@ -1,3 +1,10 @@
+"""
+This module contains the implementations of several modern cryptographic algorithms.
+
+- one-time pad chiffre
+- simplified DES
+- RSA
+"""
 from typing import Tuple
 from .helpers import *
 from .constants import *
@@ -104,6 +111,11 @@ def encrypt_simplified_des(plain_binary: str, key: str) -> str:
 
 
 def rsa_generate_keys(p: int, q: int) -> list[list[int]]:
+    """
+    Generates the public and private key for RSA.
+    Returns a list of two lists, the first one containing the public key and the second one the private key.
+    The public key is a list of two integers, the first one is e of gcd(e, phi) == 1 and the second one the product of p and q.
+    """
     n = p * q
     phi = (p-1) * (q-1)
     pe = []
@@ -123,12 +135,18 @@ def rsa_generate_keys(p: int, q: int) -> list[list[int]]:
 
 
 def encrypt_rsa(public_key: list[int], txt: str) -> list[int]:
+    """
+    Encrypts a string using RSA.
+    """
     def encrypt(c: str) -> int:
         return (ord(c) ** public_key[0]) % public_key[1]
     return [encrypt(c) for c in txt]
 
 
 def decrypt_rsa(private_key: list[int], chiffre: list[int]) -> str:
+    """
+    Decrypts a string using RSA.
+    """
     def decrypt(c: int) -> str:
         return chr((c**private_key[0]) % private_key[1])
     return "".join([decrypt(c) for c in chiffre])

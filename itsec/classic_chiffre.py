@@ -1,5 +1,6 @@
 """
-This module contains the classic chiffre algorithms.
+This module contains the implementations of several classic cryptographic algorithms.
+
 - caesar chiffre
 - multiplicative chiffre
 - affine chiffre
