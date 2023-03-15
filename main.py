@@ -37,8 +37,10 @@ print("encrypted: ", affine_encrypted)
 print("decrypted: ", affine_decrypted)
 
 print("\nOne time pad Chiffre")
-one_time_pad_encrypted = encrypt_one_time_pad_chiffre("kryptographie", "dhbwmosbachxx")
-one_time_pad_decrypted = decrypt_one_time_pad_chiffre(one_time_pad_encrypted, "dhbwmosbachxx")
+one_time_pad_encrypted = encrypt_one_time_pad_chiffre(
+    "kryptographie", "dhbwmosbachxx")
+one_time_pad_decrypted = decrypt_one_time_pad_chiffre(
+    one_time_pad_encrypted, "dhbwmosbachxx")
 
 print("encrypted: ", one_time_pad_encrypted)
 print("decrypted: ", one_time_pad_decrypted)
@@ -47,3 +49,12 @@ print("\nSimplified DES")
 simplified_des_encrypted = encrypt_simplified_des("11110011", "1010000010")
 
 print("encrypted: ", simplified_des_encrypted)
+
+print("\nRSA")
+
+keys = rsa_generate_keys(61, 97)
+encrypted_rsa = encrypt_rsa(keys[0], "Hello world :)")
+
+print("encrypted: ", encrypted_rsa)
+print("decrypted: ", decrypt_rsa(keys[1], encrypted_rsa))
+

@@ -1,6 +1,8 @@
 from typing import Tuple
 from .helpers import *
 from .constants import *
+from math import gcd
+
 
 def encrypt_one_time_pad_chiffre(plain_text: str, k: str) -> list[int]:
     """
@@ -99,3 +101,34 @@ def encrypt_simplified_des(plain_binary: str, key: str) -> str:
     cipher = apply_simplified_des_round(cipher, k2)
     cipher = apply_permutation_table(cipher, DES_IP_INV)
     return cipher
+
+
+def rsa_generate_keys(p: int, q: int) -> list[list[int]]:
+    n = p * q
+    phi = (p-1) * (q-1)
+    pe = []
+    for i in range(2, phi):
+        if gcd(i, phi) == 1:
+            pe.append(i)
+            if len(pe) == 12:
+                break
+    e = pe[-1]
+    d = 0
+    for i in range(0, phi):
+        if (i * e) % phi == 1:
+            d = i
+            break
+
+    return [[e, n], [d, n]]
+
+
+def encrypt_rsa(public_key: list[int], txt: str) -> list[int]:
+    def encrypt(c: str) -> int:
+        return (ord(c) ** public_key[0]) % public_key[1]
+    return [encrypt(c) for c in txt]
+
+
+def decrypt_rsa(private_key: list[int], chiffre: list[int]) -> str:
+    def decrypt(c: int) -> str:
+        return chr((c**private_key[0]) % private_key[1])
+    return "".join([decrypt(c) for c in chiffre])
