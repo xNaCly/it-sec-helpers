@@ -18,12 +18,14 @@ def print_matrix(matrix: list[list[str]]) -> None:
             print(char, end=" ")
         print()
 
-def apply_permutation_table(input: str, table: str) -> str:
+
+def apply_permutation_table(input: str, table: list[int]) -> str:
     """Applies a permutation table to a input string."""
     output = ""
     for i in table:
         output += input[int(i) - 1]
     return output
+
 
 def xor_binary_strings(a: str, b: str) -> str:
     """XOR two binary strings."""

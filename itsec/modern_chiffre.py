@@ -24,6 +24,7 @@ def decrypt_one_time_pad_chiffre(cipher: list[int], k: str) -> Tuple[str, list[i
         res.append(c ^ key[i])
     return ("".join([chr(x) for x in res]), res)
 
+
 def create_simplified_des_subkeys(key: str) -> Tuple[str, str]:
     """
     Creates the two keys for simplified DES (k1, k2).
@@ -47,6 +48,7 @@ def create_simplified_des_subkeys(key: str) -> Tuple[str, str]:
 
     return k1, k2
 
+
 def apply_simplified_des_sbox(input: str, sbox: list[list[str]]) -> str:
     """
     Applies a simplified DES S-Box for a 4 bit long cipher part.
@@ -68,8 +70,10 @@ def apply_simplified_des_round(cipher: str, k) -> str:
     right_part_expanded = apply_permutation_table(right_part, DES_EP)
     right_part_expanded_xor_k = xor_binary_strings(right_part_expanded, k)
 
-    right_part_sbox_0 = apply_simplified_des_sbox(right_part_expanded_xor_k[:4], DES_S0)
-    right_part_sbox_1 = apply_simplified_des_sbox(right_part_expanded_xor_k[4:], DES_S1)
+    right_part_sbox_0 = apply_simplified_des_sbox(
+        right_part_expanded_xor_k[:4], DES_S0)
+    right_part_sbox_1 = apply_simplified_des_sbox(
+        right_part_expanded_xor_k[4:], DES_S1)
     right_part_sbox = right_part_sbox_0 + right_part_sbox_1
 
     right_part_p4 = apply_permutation_table(right_part_sbox, DES_P4)
